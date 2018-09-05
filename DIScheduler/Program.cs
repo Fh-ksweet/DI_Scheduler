@@ -1,4 +1,6 @@
-﻿using System.ServiceProcess;
+﻿using DIScheduler.DependencyResolution;
+using System.Collections.Generic;
+using System.ServiceProcess;
 
 namespace DIScheduler
 {
@@ -9,12 +11,29 @@ namespace DIScheduler
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+#if DEBUG
+            System.Diagnostics.Debugger.Launch();
+#endif
+
+            var container = IoC.Initialize();
+            var application = container.GetInstance<Application>();
+            application.Run();
+        }
+
+        public class Application
+        {
+            private readonly SchedulerService _schedulerService;
+
+            public Application(SchedulerService schedulerService)
             {
-                new Service1()
-            };
-            ServiceBase.Run(ServicesToRun);
+                _schedulerService = schedulerService;
+            }
+
+            public void Run()
+            {
+                var servicesToRun = new List<ServiceBase> { _schedulerService };
+                ServiceBase.Run(servicesToRun.ToArray());
+            }
         }
     }
 }
