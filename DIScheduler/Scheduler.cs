@@ -1,4 +1,5 @@
 ﻿using DIScheduler.Interfaces;
+using System.Diagnostics;
 
 namespace DIScheduler
 {
@@ -9,7 +10,7 @@ namespace DIScheduler
 
         public void PollSapphireQueue()
         {
-
+            EventLog.WriteEntry("DI_Scheduler", "RAN SUCCESSFULLY");
         }
     }
 }

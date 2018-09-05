@@ -1,6 +1,5 @@
 ﻿using DIScheduler.Interfaces;
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.ServiceProcess;
 using System.Threading;
@@ -18,8 +17,9 @@ namespace DIScheduler
             {
                 try
                 {
-                    string pollInterval = ConfigurationManager.AppSettings["PollingInterval"];
-                    return Convert.ToInt32(pollInterval);
+                    return 60000;
+                    //string pollInterval = ConfigurationManager.AppSettings["PollingInterval"];
+                    //return Convert.ToInt32(pollInterval);
                     //EventLog.WriteEntry("ContentService", "Pollinterval=" + pollInterval);
                 }
                 catch
