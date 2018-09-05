@@ -1,6 +1,5 @@
 ﻿using DIScheduler.Core.Interfaces;
 using DIScheduler.Interfaces;
-using System.Diagnostics;
 
 namespace DIScheduler
 {
@@ -15,7 +14,7 @@ namespace DIScheduler
 
         public void PollSapphireQueue()
         {
-            EventLog.WriteEntry("DI_Scheduler", _sapphireService.FooRuns());
+            //Go Check the Last Run Table to see if we have a valid last run date
         }
     }
 }
