@@ -11,6 +11,10 @@ namespace DIScheduler
         /// </summary>
         static void Main()
         {
+#if DEBUG
+            System.Diagnostics.Debugger.Launch();
+#endif
+
             var container = IoC.Initialize();
             var application = container.GetInstance<Application>();
             application.Run();

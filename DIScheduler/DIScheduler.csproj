@@ -77,6 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DIScheduler.Core\DIScheduler.Core.csproj">
+      <Project>{6c4cbf43-17bc-4f5c-be14-7046cf9de125}</Project>
+      <Name>DIScheduler.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Scheduler.IoC\Scheduler.IoC.csproj">
       <Project>{D8FF5041-2FA7-415B-A9B9-F86A5C9C16C9}</Project>
       <Name>Scheduler.IoC</Name>
