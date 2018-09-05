@@ -1,5 +1,6 @@
 ﻿using DIScheduler.Interfaces;
 using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.ServiceProcess;
 using System.Threading;
@@ -17,10 +18,9 @@ namespace DIScheduler
             {
                 try
                 {
-                    return 60000;
-                    //string pollInterval = ConfigurationManager.AppSettings["PollingInterval"];
-                    //return Convert.ToInt32(pollInterval);
-                    //EventLog.WriteEntry("ContentService", "Pollinterval=" + pollInterval);
+                    string pollInterval = ConfigurationManager.AppSettings["PollingInterval"];
+                    return Convert.ToInt32(pollInterval);
+                    //EventLog.WriteEntry("DIScheduler", "Pollinterval=" + pollInterval);
                 }
                 catch
                 {
@@ -52,24 +52,26 @@ namespace DIScheduler
                     try
                     {
                         inProcess = true;
+                        EventLog.WriteEntry("DI Scheduler", "Start");
                         _scheduler.PollSapphireQueue();
                     }
                     catch (Exception ex)
                     {
-                        EventLog.WriteEntry("DI_Scheduler", "Exception " + ex.Message, EventLogEntryType.Error);
-                        EventLog.WriteEntry("DI_Scheduler", "Inner Exception " + ex.InnerException, EventLogEntryType.Error);
-                        EventLog.WriteEntry("DI_Scheduler", "stack " + ex.StackTrace, EventLogEntryType.Error);
+                        EventLog.WriteEntry("DI Scheduler", "Exception " + ex.Message, EventLogEntryType.Error);
+                        EventLog.WriteEntry("DI Scheduler", "Inner Exception " + ex.InnerException, EventLogEntryType.Error);
+                        EventLog.WriteEntry("DI Scheduler", "stack " + ex.StackTrace, EventLogEntryType.Error);
                     }
                     finally
                     {
                         inProcess = false;
+                        EventLog.WriteEntry("DI Scheduler", "Stop");
                         Thread.Sleep(PollingInterval);
                     }
                 }
             }
             catch (Exception ex)
             {
-                EventLog.WriteEntry("DI_Scheduler", "Exception" + ex);
+                EventLog.WriteEntry("DI Scheduler", "Exception" + ex);
             }
         }
 
