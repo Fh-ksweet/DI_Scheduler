@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DIScheduler.Core.Interfaces
 {
-    public interface ISapphireService
+    public interface INextRunRepository
     {
         IList<NextRun> ListNextRuns();
     }
