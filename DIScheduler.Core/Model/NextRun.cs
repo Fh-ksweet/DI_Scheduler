@@ -6,5 +6,6 @@ namespace DIScheduler.Core.Model
     {
         public int Id { get; set; }
         public DateTime RunStart { get; set; }
+        public DateTime RunComplete { get; set; }
     }
 }

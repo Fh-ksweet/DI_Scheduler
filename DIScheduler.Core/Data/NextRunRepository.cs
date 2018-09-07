@@ -20,5 +20,12 @@ namespace DIScheduler.Core.Data
             return _db.NextRuns.ToList();
         }
 
+        public NextRun GetMostRecent()
+        {
+            return _db.NextRuns
+                .OrderByDescending(n => n.RunStart)
+                .FirstOrDefault();
+        }
+
     }
 }
